@@ -51,5 +51,5 @@ app.delete('/api/todos/:id', jsonMiddleware, (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log('listening...')
+  console.log('Server Listening at http://127.0.0.1:3000')
 })
