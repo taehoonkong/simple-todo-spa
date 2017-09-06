@@ -11,10 +11,11 @@
       dataPath: '/api/todos'
     }).then(todosEl => {
       todosEl.querySelectorAll('.todo-item').forEach(todoItem => {
-        const id = todoItem.dataset.id
+        const id = todoItem.dataset.id // <div data-id="1"></div> : dataset.id = "1"
 
         // 체크박스 클릭시
         // 낙관적 업데이트
+        // 화면 갱신과 ajax요청을 같은 단계에서
         const checkboxEl = todoItem.querySelector('.todo-checkbox')
         checkboxEl.addEventListener('click', e => {
           axios.patch(`/api/todos/${id}`, {
@@ -26,6 +27,7 @@
 
         // 삭제 아이콘 클릭시
         // 비관적 업데이트
+        // 성공 실패를 가늠할 수 없기 때문
         const removeLink = todoItem.querySelector('.todo-remove')
         removeLink.addEventListener('click', e => {
           axios.delete(`/api/todos/${id}`).then(res => {
